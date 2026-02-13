@@ -804,3 +804,61 @@ h2 {
   transform: scale(1.08);
 }
 
+
+
+@media (max-width: 768px) {
+  
+  body {
+    overflow-x: hidden;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .music-cta {
+    position: static;
+    margin: 20px auto;
+    display: block;
+  }
+
+  .journey-container {
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .stage {
+    width: 100%;
+  }
+
+  .stage-img {
+    margin: 0 auto;
+  }
+
+  .wishwall-body {
+    flex-direction: column;
+  }
+
+  .wishwall-form,
+  .wishwall-list {
+    width: 100%;
+  }
+
+  .wall-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+  }
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+
