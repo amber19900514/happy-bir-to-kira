@@ -140,7 +140,7 @@ h2 {
 
 .hero-text .birthday {
   margin-left: 1080px;
-  margin-bottom: 0;
+  margin-bottom: -20px;
   font-size: 108px;
   font-weight: 600;
   color: #ffea06;
@@ -860,5 +860,6 @@ img {
 html, body {
   overflow-x: hidden;
 }
+
 
 
