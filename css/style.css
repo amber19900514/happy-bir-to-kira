@@ -1,0 +1,805 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #fff;
+  color: #000000;
+}
+
+/* HERO */
+h2 {
+  margin-bottom: 50px;
+  font-size: 48px;
+}
+
+.hero {
+  height: 900px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(191, 0, 0);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size:
+    3px 3px,
+    5px 5px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.scribble {
+  position: absolute;
+  border: 1px solid rgba(255, 230, 0, 0.671);
+  width: 180px;
+  height: 120px;
+  opacity: 0.3;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.scribble-1 {
+  position: absolute;
+  top: 80px;
+  right: 150px;
+  width: 170px;
+  height: 130px;
+
+  opacity: 0; /* 默认隐藏 */
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+
+  background:
+    linear-gradient(rgba(187, 0, 0, 0.168), rgba(187, 0, 0, 0.171)),
+    url("../images/scribble-1.jpg") no-repeat center/contain;
+
+  filter: brightness(.7) blur(.5px);
+}
+.hero.show-second .scribble-1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scribble-2 {
+  position: absolute; /* 如果你是装饰元素必须加 */
+  bottom: 120px;
+  left: 120px;
+  width: 170px; /* 必须 */
+  height: 130px; /* 必须 */
+
+  opacity: 0; /* 默认隐藏 */
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  background:
+    linear-gradient(rgba(187, 0, 0, 0.168), rgba(187, 0, 0, 0.171)),
+    url("../images/scribble-2.jpg") no-repeat center/contain;
+
+  filter: brightness(.7) blur(.5px);
+}
+.hero.show-second .scribble-2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition:
+    opacity 1.6s ease,
+    transform 2s ease;
+}
+.hero-img-1 {
+  background-image: url("../images/cover-01.png");
+}
+.hero-img-2 {
+  background-image: url("../images/cover-02.png");
+  opacity: 0;
+  transform: scale(1.04);
+}
+.hero.show-second .hero-img-1 {
+  opacity: 0;
+}
+.hero.show-second .hero-img-2 {
+  opacity: 1;
+}
+
+.hero-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s ease;
+}
+
+.hero.show-second .hero-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero.show-text .hero-text {
+  opacity: 1;
+}
+
+.hero-text .happy {
+  margin-left: 50px;
+  margin-bottom: 100px;
+  font-size: 128px;
+  font-weight: 600;
+  color: #ffea06;
+}
+
+.hero-text .birthday {
+  margin-left: 1080px;
+  margin-bottom: 0;
+  font-size: 108px;
+  font-weight: 600;
+  color: #ffea06;
+}
+
+.hero-text .happy:hover {
+  color: rgb(19, 164, 0);
+  transform: scale(1.15);
+}
+
+.hero-text .birthday:hover {
+  color: rgb(19, 164, 0);
+  transform: scale(1.15);
+}
+
+.happy {
+  animation: textPulse 3s ease-in-out infinite;
+}
+
+.birthday {
+  animation: textPulse 4s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hero-text p {
+  margin-top: 0;
+  font-size: 38px;
+  color: #ffea06;
+}
+
+.hero-text p:hover {
+  color: rgb(19, 164, 0);
+}
+
+/* MUSIC */
+
+.music-cta {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 1180px;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(120deg, rgb(187, 0, 0), #ffea06, rgb(19, 164, 0));
+  background-size: 300% 300%;
+  color: #000;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow: hidden;
+  animation: gradientShift 4s infinite linear;
+}
+
+/* 渐变流动 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.music-cta.cake {
+  background: transparent;
+  animation: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.particle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 0.8s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
+}
+
+/* 悬浮变大 */
+.music-cta:hover {
+  transform: scale(1.08);
+}
+
+/* 文字 */
+.music-text {
+  position: relative;
+  z-index: 2;
+  font-size: 58px;
+}
+
+/* 蛋糕图 */
+.cake-img {
+  width: 300px;
+  height: auto;
+  margin-right: 80px;
+  transition:
+    transform 0.9s ease,
+    filter 0.4s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 轻微立体浮动 */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.hero-img-2 {
+  filter: contrast(1.1) saturate(1.05);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  pointer-events: none;
+}
+
+/* SECTIONS */
+.section {
+  padding: 100px 8vw;
+  background: #ffea06;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 如果用户系统设置“减少动态效果”，就直接显示 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.section:nth-child(even) {
+  background: #0582ff;
+}
+
+/* WORKS */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.work img {
+  width: 100%;
+  display: block;
+  filter: brightness(0.72) contrast(0.9) saturate(0.85);
+  transition:
+    filter 0.45s ease,
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+.works-grid:hover .work img {
+  transform: scale(0.94);
+}
+.works-grid .work:hover img {
+  transform: scale(1.08);
+}
+
+.work:hover img {
+  filter: brightness(1.08) contrast(1.05) saturate(1.05);
+  transform: scale(1.06);
+  z-index: 2;
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.28),
+    0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.works-grid:hover .work:not(:hover) img {
+  filter: brightness(0.55) contrast(0.85) saturate(0.75);
+  transform: scale(0.92);
+}
+
+/* BIO */
+.journey {
+  padding: 120px 80px;
+  position: relative;
+}
+
+.journey-title {
+  font-size: 42px;
+  margin-bottom: 100px;
+  font-weight: 600;
+}
+
+.journey-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.stage {
+  width: 22%;
+  text-align: center;
+  position: relative;
+}
+
+.stage-img {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: floatStage 4s ease-in-out infinite;
+}
+
+.stage:nth-child(2) img {
+  animation-delay: 1s;
+}
+
+.stage:nth-child(3) img {
+  animation-delay: 2s;
+}
+
+@keyframes floatStage {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.stage-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.stage-slider img {
+  margin-bottom: 20px;
+  margin-left: 26px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.stage-slider img.active {
+  opacity: 1;
+}
+
+.stage-img img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+/* 悬浮感 */
+
+.stage h3 {
+  font-size: 28px;
+  color: #ffffff;
+  margin-top: 24px;
+}
+
+.stage p {
+  font-size: 16px;
+  line-height: 1.8;
+  opacity: 0.75;
+  color: #ffffff;
+}
+
+.journey-line {
+  position: absolute;
+  top: 200px;
+  left: 10%;
+  width: 80%;
+  height: 120px;
+  background: url("../images/journey-line.svg") no-repeat center;
+  background-size: contain;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.journey h2 {
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgb(187, 0, 0);
+  position: relative;
+}
+
+.journey h2::after {
+  content: "";
+  width: 120px;
+  height: 6px;
+  background: #ffea06;
+  display: block;
+  margin-top: 16px;
+}
+
+/* WISH */
+/* ===== Wish Wall (isolated) ===== */
+.wishwall {
+  padding: 140px 8vw;
+  background: #00e047;
+  position: relative;
+  z-index: 1;
+}
+
+.wishwall-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.wishwall-header {
+  margin-bottom: 64px;
+}
+
+.wishwall-title {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.wishwall-subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.wishwall-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* 表单 */
+.wishwall-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.wishwall-form input,
+.wishwall-form textarea {
+  border: none;
+  border-bottom: 1px solid #111;
+  padding: 10px 4px;
+  font-size: 15px;
+  background: transparent;
+}
+
+.wishwall-form textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+.wishwall-form button {
+  margin-top: 18px;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+.wishwall-form button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: #111;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.wishwall-form button:hover::after {
+  transform: scaleX(1);
+}
+
+/* 祝福墙 */
+/* ===== Wish Wall (Safe Module) ===== */
+.wishwall {
+  padding: 140px 8vw;
+  background: #efefef;
+}
+
+.wishwall-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.wishwall-header {
+  margin-bottom: 64px;
+}
+
+.wishwall-title {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.wishwall-subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* Layout */
+.wishwall-body {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Form */
+.wishwall-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.wishwall-form input {
+  border: none;
+  border-bottom: 1px solid #111;
+  padding: 10px 4px;
+  font-size: 15px;
+  background: transparent;
+}
+
+.wishwall-form textarea {
+  min-height: 120px;
+
+  border: 1px solid #111;
+}
+
+.wishwall-form button {
+  margin-top: 18px;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+.wishwall-form button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: #111;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.wishwall-form button:hover::after {
+  transform: scaleX(1);
+}
+
+/* Wish List */
+.wishwall-list {
+  max-height: 420px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* 真正滚动的容器 */
+.wishwall-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: autoScroll 18s linear infinite;
+}
+
+/* 每条祝福 */
+.wishwall-item {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.wishwall-item:hover {
+  transform: translateY(-4px);
+}
+
+/* 自动滚动动画 */
+@keyframes autoScroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* 鼠标悬浮暂停 */
+.wishwall-list:hover .wishwall-scroll {
+  animation-play-state: paused;
+}
+
+
+
+
+/* =============================================== */
+/* =========================
+   PHOTO WALL
+========================= */
+
+.photo-wall {
+  height: 120vh;
+  background: #000;
+  overflow: hidden;
+}
+
+/* Grid 布局 */
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  width: 100%;
+  height: 100%;
+}
+
+/* 单张容器 */
+.wall-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 图片默认状态 */
+.wall-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter: brightness(0.45);
+  transition: filter .4s ease, transform .4s ease;
+}
+
+/* 红色融合层（更艺术） */
+.wall-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(187,0,0,0.25);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+/* =========================
+   Hover 效果逻辑
+========================= */
+
+/* 鼠标进入整个区域 → 全部变暗 */
+.wall-grid:hover .wall-item img {
+  filter: brightness(0.25);
+}
+
+/* 悬浮的那一张恢复亮度 */
+.wall-grid:hover .wall-item:hover img {
+  filter: brightness(1);
+  transform: scale(1.08);
+  z-index: 5;
+}
+
+/* 悬浮时红色层减弱 */
+.wall-grid:hover .wall-item:hover::after {
+  opacity: 0;
+}
+
+
+
+/* 　　　　　　　　　　　　　　　　　　　　　＝＝ */
+
+.wall-item.active img {
+  filter: brightness(1) !important;
+  transform: scale(1.05);
+}
+
+.wall-item.active::after {
+  opacity: 0;
+}
+
+
+
+.wall-item.active img {
+  filter: brightness(1) !important;
+  transform: scale(1.08);
+}
