@@ -189,9 +189,9 @@ h2 {
 /* MUSIC */
 
 .music-cta {
-  position: relative;
-  margin-top: 20px;
-  margin-left: 1180px;
+  position: absolute;
+  right: 5%;
+  top: 40%;
   padding: 16px 40px;
   border-radius: 50px;
   border: none;
@@ -803,3 +803,4 @@ h2 {
   filter: brightness(1) !important;
   transform: scale(1.08);
 }
+
